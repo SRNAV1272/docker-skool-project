@@ -7,10 +7,11 @@ export default function Dashboard() {
         menu: 0,
         pro: 0
     })
-    const [bell, setBell] = useState({
+    const [ring, setRing] = useState({
         bell: '',
         notification: 100
     })
+    const [display, setDisplay] = useState(window.innerWidth < 1024 ? 'd-none' : 'd-flex')
 
     useEffect(() => {
         document.getElementById('image').style.transform = `rotate(${rotate.pro}deg)`
@@ -22,7 +23,7 @@ export default function Dashboard() {
     }, [rotate.menu])
 
     useEffect(() => {
-        if (bell.notification > 1) setBell(prev => {
+        if (ring.notification > 1) setRing(prev => {
             return {
                 ...prev,
                 bell: 'bell'
@@ -30,7 +31,7 @@ export default function Dashboard() {
         })
 
         setTimeout(() => {
-            setBell(prev => {
+            setRing(prev => {
                 return {
                     ...prev,
                     bell: ''
@@ -38,82 +39,99 @@ export default function Dashboard() {
             })
         }, 2000)
 
-    }, [bell.notification])
+    }, [ring.notification])
 
-    function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
+    function Toggle() {
+        setDisplay('d-flex')
+        if (window.innerWidth > 1023) {
+            if (rotate.menu === 0) {
+                setRotate(prev => {
+                    return {
+                        ...prev,
+                        menu: 180
+                    }
+                })
+                document.getElementById("mySidenav").style.width = "150px";
+                document.getElementById("main").style.marginLeft = "150px";
+            }
+            else {
+                document.getElementById("mySidenav").style.width = "60px";
+                document.getElementById("main").style.marginLeft = "60px";
+                setRotate(prev => {
+                    return {
+                        ...prev,
+                        menu: 0
+                    }
+                })
+            }
+        } else {
+            if (rotate.menu === 0) {
+                setRotate(prev => {
+                    return {
+                        ...prev,
+                        menu: 180
+                    }
+                })
+                document.getElementById("mySidenav").style.width = "150px";
+                document.getElementById("main").style.marginLeft = "150px";
+            }
+            else {
+                document.getElementById("mySidenav").style.width = "0px";
+                document.getElementById("main").style.marginLeft = "0px";
+                setRotate(prev => {
+                    return {
+                        ...prev,
+                        menu: 0
+                    }
+                })
+            }
+        }
     }
 
     return (
         <>
             <div id="mySidenav" className="sidenav">
-                <span
-                    className={`closebtn ${rotate.menu === 180 ? "" : "d-lg-none"}`}
-                    onClick={() => {
-                        if (window.innerWidth > 1023) {
-                            document.getElementById("mySidenav").style.width = "60px";
-                            setRotate(prev => {
-                                return {
-                                    ...prev,
-                                    menu: 0
-                                }
-                            })
-                        } else {
-                            closeNav()
-                            setRotate(prev => {
-                                return {
-                                    ...prev,
-                                    menu: 0
-                                }
-                            })
-                        }
-                    }}
-                >&times;</span>
-                <div className="h-100">
-                    <i class="fa-solid fa-border-all"></i>
+                <div className={`${display} h-100 flex-column align-items-center py-3`}>
+                    <div>
+                        <img
+                            src="https://www.shutterstock.com/image-photo/micro-peacock-feather-hd-imagebest-260nw-1127238599.jpg"
+                            className="rounded-circle"
+                            alt="..."
+                            width={"40px"}
+                            height={"40px"}
+                        />
+                    </div>
+                    <div className="py-3">
+                        <Link to='/dashboard' className="text-dark d-flex justify-content-center align-items-center" >
+                            <i class="fa-solid fa-border-all"></i>&ensp;
+                            <span className={`${rotate.menu === 180 ? 'd-flex' : 'd-none'}`}>Dashboard</span>
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            </div >
 
             <div id="main">
                 <div className="bg-white d-flex justify-content-between">
-                    <div className="col-2 d-flex align-items-center p-2">
+                    <div className="col-2 d-flex align-items-center px-4">
                         <i
-                            class="fa-solid fa-chevron-left"
+                            class="fa-solid fa-chevron-right"
                             id="menu"
-                            onClick={() => {
-                                if (rotate.menu === 0) {
-                                    setRotate(prev => {
-                                        return {
-                                            ...prev,
-                                            menu: 180
-                                        }
-                                    })
-                                    document.getElementById("mySidenav").style.width = "150px";
-                                }
-                                else
-                                    setRotate(prev => {
-                                        return {
-                                            ...prev,
-                                            menu: 0
-                                        }
-                                    })
-                            }}
+                            onClick={() => Toggle()}
                         ></i>
                     </div>
                     <div className="col-6 d-flex p-1 align-items-center justify-content-end border-bottom border-1 border-dark-50 ">
                         <div className="position-relative p-1 d-flex justify-content-center align-items-center">
                             <i
-                                className={`${bell.bell} fa fa-bell fs-5 text-black-50`}
+                                className={`${ring.bell} fa fa-bell fs-5 text-black-50`}
                             ></i> &emsp;
                             <span className="position-absolute bottom-50 start-50 text-danger p-1">{
-                                bell.notification >= 100 ? `${99}+` : bell.notification
+                                ring.notification >= 100 ? `${99}+` : ring.notification
                             }</span>
                         </div>
                         <div className="d-flex align-items-center p-1">
                             <li
                                 className="dropdown"
                                 style={{ cursor: 'pointer' }}
-                                onClick={(e) => { e.preventDefault() }}
                                 onMouseEnter={() => {
                                     setRotate(prev => {
                                         return {
@@ -134,10 +152,9 @@ export default function Dashboard() {
                                 <i
                                     id="image"
                                     className="fa-solid fa-chevron-down"
-                                    data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 ></i>
-                                <ul class="dropdown_menu dropdown_menu--animated dropdown_menu-9">
+                                <ul class="dropdown_menu dropdown_menu--animated dropdown_menu-9 shadow-lg">
                                     <li>
                                         <Link className="text-decoration-none text-dark" to='/dashboard/student/profile'>Profile</Link>
                                     </li>
