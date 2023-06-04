@@ -1,18 +1,76 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './Components/Home/Home';
-import Dashboard from './Components/Dashboard/Dashboard';
+import { useRoutes, Outlet, Navigate } from 'react-router-dom'
+import SPrivateRoutes from './Components/Routes/SPrivateRoutes';
+import Login from './Components/Login/Login';
+import SDashboard from './Components/Dashboard/StudentDashboard';
+import StudentProfile from './Components/Student/StudentProfile';
+import TDashboard from './Components/Dashboard/TeacherDashboard';
+import TPrivateRoutes from './Components/Routes/TPrivateRoutes';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/dashboard' element={<Dashboard />} >
-          <Route path='/dashboard/home' element={<Home />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+
+  const routes = useRoutes([
+    {
+      path: '/',
+      children: [
+        {
+          path: 'login',
+          element: <Login />  
+        }
+      ]
+    },
+    {
+      path: '/',
+      element:
+        <SPrivateRoutes>
+          <Outlet />
+        </SPrivateRoutes>,
+      children: [
+        {
+          path: 'student',
+          element:
+            <SDashboard>
+              <Outlet />
+            </SDashboard>,
+          children: [
+            {
+              path: 'profile',
+              element: <StudentProfile />
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: '/',
+      element:
+        <TPrivateRoutes>
+          <Outlet />
+        </TPrivateRoutes>,
+      children: [
+        {
+          path: 'teacher',
+          element:
+            <TDashboard>
+              <Outlet />
+            </TDashboard>,
+          children: [
+            {
+              path: 'profile',
+              element: <StudentProfile />
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: '*',
+      element: <Navigate to='/login' />
+    }
+  ])
+
+  return routes
+
 }
 
 export default App;

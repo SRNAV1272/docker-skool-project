@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
-export default function Dashboard() {
+export default function SDashboard() {
+
+    const navigate = useNavigate()
 
     const [rotate, setRotate] = useState({
         menu: 0,
@@ -102,16 +104,25 @@ export default function Dashboard() {
                         />
                     </div>
                     <div className="py-3">
-                        <Link to='/dashboard' className="text-dark d-flex justify-content-center align-items-center" >
+                        <NavLink
+                            style={({ isActive }) => {
+                                console.log(isActive)
+                                return {
+                                    color: isActive ? 'black' : 'grey'
+                                }
+                            }}
+                            to='/student/profile'
+                            className="d-flex justify-content-center align-items-center"
+                        >
                             <i class="fa-solid fa-border-all"></i>&ensp;
                             <span className={`${rotate.menu === 180 ? 'd-flex' : 'd-none'}`}>Dashboard</span>
-                        </Link>
+                        </NavLink>
                     </div>
                 </div>
             </div >
 
             <div id="main">
-                <div className="bg-white d-flex justify-content-between">
+                <div className="sticky-top bg-white d-flex justify-content-between border-bottom border-1 border-dark-50">
                     <div className="col-2 d-flex align-items-center px-4">
                         <i
                             class="fa-solid fa-chevron-right"
@@ -119,7 +130,7 @@ export default function Dashboard() {
                             onClick={() => Toggle()}
                         ></i>
                     </div>
-                    <div className="col-6 d-flex p-1 align-items-center justify-content-end border-bottom border-1 border-dark-50 ">
+                    <div className="col-6 d-flex p-1 align-items-center justify-content-end">
                         <div className="position-relative p-1 d-flex justify-content-center align-items-center">
                             <i
                                 className={`${ring.bell} fa fa-bell fs-5 text-black-50`}
@@ -156,9 +167,9 @@ export default function Dashboard() {
                                 ></i>
                                 <ul class="dropdown_menu dropdown_menu--animated dropdown_menu-9 shadow-lg">
                                     <li>
-                                        <Link className="text-decoration-none text-dark" to='/dashboard/student/profile'>Profile</Link>
+                                        <NavLink className="text-decoration-none text-dark" to='/student/profile'>Profile</NavLink>
                                     </li>
-                                    <li>Logout</li>
+                                    <li onClick={() => navigate('/', { replace: true })}>Logout</li>
                                 </ul>
                             </li>
                         </div>&emsp;
@@ -180,7 +191,9 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-                <Outlet />
+                <div className="container-fluid overflow-auto" style={{ height: window.innerHeight - 59.5 }}>
+                    <Outlet />
+                </div>
             </div>
         </>
     )
