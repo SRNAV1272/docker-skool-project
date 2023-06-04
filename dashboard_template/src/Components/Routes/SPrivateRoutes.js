@@ -1,8 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
+import jsCookie from 'js-cookie'
 
 export default function SPrivateRoutes() {
 
-    const auth = { token: true, student: false }
+    const auth = { token: jsCookie.get('login'), student: jsCookie.get('student') }
 
     return (
         <>

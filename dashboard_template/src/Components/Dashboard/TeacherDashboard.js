@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import jsCookie from 'js-cookie'
 
 export default function TDashboard() {
 
@@ -98,7 +99,7 @@ export default function TDashboard() {
                         <img
                             src="https://www.shutterstock.com/image-photo/micro-peacock-feather-hd-imagebest-260nw-1127238599.jpg"
                             className="rounded-circle"
-                            alt="..."
+                            alt="2"
                             width={"40px"}
                             height={"40px"}
                         />
@@ -169,7 +170,7 @@ export default function TDashboard() {
                                     <li>
                                         <NavLink className="text-decoration-none text-dark" to='/student/profile'>Profile</NavLink>
                                     </li>
-                                    <li onClick={() => navigate('/', { replace: true })}>Logout</li>
+                                    <li onClick={() => { navigate('/login', { replace: true }); jsCookie.remove('teacher') }}>Logout</li>
                                 </ul>
                             </li>
                         </div>&emsp;
@@ -178,7 +179,7 @@ export default function TDashboard() {
                                 <img
                                     src="https://www.shutterstock.com/image-photo/micro-peacock-feather-hd-imagebest-260nw-1127238599.jpg"
                                     className="rounded-circle"
-                                    alt="..."
+                                    alt="1"
                                     width={"40px"}
                                     height={"40px"}
                                 />

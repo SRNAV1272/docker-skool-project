@@ -1,11 +1,42 @@
 import { useNavigate } from "react-router-dom"
+import axios from 'axios'
+import { useState } from "react"
+import jsCookie from 'js-cookie'
 
 export default function Login() {
 
     const navigate = useNavigate()
+    const [state, setState] = useState({
+        username: '',
+        password: ''
+    })
+
+    console.log('jscookie', jsCookie.get("login"), jsCookie.get('student'), jsCookie.get('teacher'))
 
     function Submit(e) {
         e.preventDefault()
+        try {
+
+            axios.post('http://localhost:5000/login', state)
+                .then(res => {
+                    console.log(res.data)
+                    if (res.data.login) {
+                        jsCookie.set('login', res.data.login)
+                        if (res.data.student) {
+                            jsCookie.set('student', true)
+                            navigate('/student/profile')
+                        } else if (res.data.teacher) {
+                            jsCookie.set('teacher', true)
+                            navigate('/teacher/profile')
+                        }
+                    }
+                })
+                .catch(err => console.log(err))
+
+        } catch (e) {
+            console.log(e)
+        }
+
         navigate('/student', { replace: true })
     }
 
@@ -29,6 +60,7 @@ export default function Login() {
                                 <img
                                     src="https://preschool.dreamguystech.com/template/assets/img/login.png"
                                     style={{ backgroundColor: '#18AEFA', borderRadius: '20px' }}
+                                    alt="7"
                                     width={"100%"}
                                     height={"100%"}
                                 />
@@ -36,29 +68,43 @@ export default function Login() {
                             <div className={`h-100 ${window.innerWidth < 1024 ? 'w-100' : 'w-50'}`}>
                                 <h1>Login</h1>
                                 <div>
-                                    <form class="row g-3 needs-validation px-4 py-2" onSubmit={Submit} novalidate>
-                                        <div class="col-12">
-                                            <label for="validationCustomUsername" class="form-label">Username</label>
-                                            <div class="input-group has-validation">
-                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
-                                                <div class="invalid-feedback">
+                                    <form className="row g-3 needs-validation px-4 py-2" onSubmit={Submit} novalidate>
+                                        <div className="col-12">
+                                            <label for="validationCustomUsername" className="form-label">Username</label>
+                                            <div className="input-group has-validation">
+                                                <span className="input-group-text" id="inputGroupPrepend">@</span>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="validationCustomUsername"
+                                                    aria-describedby="inputGroupPrepend"
+                                                    required
+                                                    onChange={(e) => setState(prev => { return { ...prev, username: e.target.value } })}
+                                                />
+                                                <div className="invalid-feedback">
                                                     Please choose a username.
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-12">
-                                            <label for="validationCustomUsername" class="form-label">Password</label>
-                                            <div class="input-group has-validation">
-                                                <input type="password" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required />
-                                                <div class="invalid-feedback">
+                                        <div className="col-12">
+                                            <label for="validationCustomUsername" className="form-label">Password</label>
+                                            <div className="input-group has-validation">
+                                                <input
+                                                    type="password"
+                                                    className="form-control"
+                                                    id="validationCustomUsername"
+                                                    aria-describedby="inputGroupPrepend"
+                                                    required
+                                                    onChange={(e) => setState(prev => { return { ...prev, password: e.target.value } })}
+                                                />
+                                                <div className="invalid-feedback">
                                                     Please choose a password.
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-primary" type="submit">Login</button>
+                                        <div className="col-12">
+                                            <button className="btn btn-primary" type="submit">Login</button>
                                         </div>
                                     </form>
                                 </div>
