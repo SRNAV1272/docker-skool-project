@@ -24,10 +24,10 @@ export default function Login() {
                         jsCookie.set('login', res.data.login)
                         if (res.data.student) {
                             jsCookie.set('student', true)
-                            navigate('/student/profile')
+                            navigate('/student')
                         } else if (res.data.teacher) {
                             jsCookie.set('teacher', true)
-                            navigate('/teacher/profile')
+                            navigate('/teacher')
                         }
                     }
                 })

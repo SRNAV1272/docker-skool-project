@@ -2,9 +2,52 @@ import { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import jsCookie from 'js-cookie'
 
+
+function NAV(props) {
+    const { rotate } = props
+    return (
+        <>
+            <div className="py-4">
+                <NavLink
+                    style={({ isActive }) => {
+                        console.log(isActive)
+                        return {
+                            color: isActive ? 'blue' : 'grey'
+                        }
+                    }}
+                    to='/student/dashboard'
+                    className="d-flex align-items-center fw-bold"
+                >
+                    <i class="fa-solid fa-border-all"></i>&ensp;
+                    <span className={`${rotate.menu === 180 ? 'd-flex' : 'd-none'}`}>Dashboard</span>
+                </NavLink>
+                <NavLink
+                    style={({ isActive }) => {
+                        console.log(isActive)
+                        return {
+                            color: isActive ? 'blue' : 'grey'
+                        }
+                    }}
+                    to='/student/fees'
+                    className="d-flex align-items-center fw-bold"
+                >
+                    <i class="fa-solid fa-comment-dollar"></i>&ensp;
+                    <span className={`${rotate.menu === 180 ? 'd-flex' : 'd-none'}`}>Fees</span>
+                </NavLink>
+            </div>
+        </>
+    )
+}
+
 export default function SDashboard() {
 
     const navigate = useNavigate()
+    const [Class, setClass] = useState('')
+
+    useEffect(() => {
+        console.log("Display student dashboard")
+        navigate('/student/dashboard')
+    }, [])
 
     const [rotate, setRotate] = useState({
         menu: 0,
@@ -19,11 +62,6 @@ export default function SDashboard() {
     useEffect(() => {
         document.getElementById('image').style.transform = `rotate(${rotate.pro}deg)`
     }, [rotate.pro])
-
-
-    useEffect(() => {
-        document.getElementById('menu').style.transform = `rotate(${rotate.menu}deg)`
-    }, [rotate.menu])
 
     useEffect(() => {
         if (ring.notification > 1) setRing(prev => {
@@ -104,36 +142,27 @@ export default function SDashboard() {
                             height={"40px"}
                         />
                     </div>
-                    <div className="py-3">
-                        <NavLink
-                            style={({ isActive }) => {
-                                console.log(isActive)
-                                return {
-                                    color: isActive ? 'black' : 'grey'
-                                }
-                            }}
-                            to='/student/profile'
-                            className="d-flex justify-content-center align-items-center"
-                        >
-                            <i class="fa-solid fa-border-all"></i>&ensp;
-                            <span className={`${rotate.menu === 180 ? 'd-flex' : 'd-none'}`}>Dashboard</span>
-                        </NavLink>
-                    </div>
+                    <NAV rotate={rotate} />
                 </div>
             </div >
 
             <div id="main">
                 <div className="sticky-top bg-white d-flex justify-content-between border-bottom border-1 border-dark-50">
-                    <div className="col-2 d-flex align-items-center px-4">
-                        <i
-                            class="fa-solid fa-chevron-right"
-                            id="menu"
-                            onClick={() => Toggle()}
-                        ></i>
+                    <div className="col-6 d-flex align-items-center px-4">
+                        <div id="nav-icon1" className={`${Class}`} onClick={() => {
+                            if (Class === 'open') setClass('')
+                            else setClass('open')
+                            Toggle()
+                        }}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
                     <div className="col-6 d-flex p-1 align-items-center justify-content-end">
                         <div className="position-relative p-1 d-flex justify-content-center align-items-center">
                             <i
+                                onClick={() => navigate('/student/notifications')}
                                 className={`${ring.bell} fa fa-bell fs-5 text-black-50`}
                             ></i> &emsp;
                             <span className="position-absolute bottom-50 start-50 text-danger p-1">{
@@ -168,9 +197,12 @@ export default function SDashboard() {
                                 ></i>
                                 <ul class="dropdown_menu dropdown_menu--animated dropdown_menu-9 shadow-lg">
                                     <li>
-                                        <NavLink className="text-decoration-none text-dark" to='/student/profile'>Profile</NavLink>
+                                        <NavLink className="text-decoration-none text-dark fw-bold" to='/student/profile'>Profile</NavLink>
                                     </li>
-                                    <li onClick={() => { navigate('/login', { replace: true }); jsCookie.remove('login') }}>Logout</li>
+                                    <li
+                                        onClick={() => { navigate('/login', { replace: true }); jsCookie.remove('login') }}
+                                        className="fw-bold"
+                                    >Logout</li>
                                 </ul>
                             </li>
                         </div>&emsp;
@@ -186,9 +218,9 @@ export default function SDashboard() {
                             </div>
                             &ensp;
                             <div className="d-flex flex-column justify-content-center">
-                                <h6 style={{ fontSize: '12px' }}>K Sai Rajesh</h6>
-                                <h6 style={{ fontSize: '10px' }}>Student</h6>
-                            </div>&ensp;
+                                <h6 className="fw-bold text-primary" style={{ fontSize: '12px' }}>K Sai Rajesh</h6>
+                                <h6 className="fw-bold text-secondary" style={{ fontSize: '11px' }}>Student</h6>
+                            </div>&ensp;&ensp;
                         </div>
                     </div>
                 </div>
