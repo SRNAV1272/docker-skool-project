@@ -157,11 +157,8 @@ function App() {
       element: <Navigate to='/login' />
     }
   ]
-
+  
   const routes = useRoutes(WebRoutes)
-
-
-  console.log("Display", initialState)
   return routes
 }
 

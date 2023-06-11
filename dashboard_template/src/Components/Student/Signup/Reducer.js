@@ -3,7 +3,11 @@ import { createContext } from "react"
 export const SetContext = createContext()
 
 export const initialState = {
-    step: 1
+    step: 1,
+    basicInfo: {
+        email: '',
+        password: ''
+    }
 }
 
 export default function UpdateState(state, action) {

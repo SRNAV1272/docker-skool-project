@@ -6,7 +6,7 @@ export default function Signup() {
 
     const { currentStep } = useContext(SetContext)
 
-    var numSteps = 4;
+    var numSteps = 3;
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -18,8 +18,6 @@ export default function Signup() {
     }, [currentStep])
 
     function nextStep() {
-        console.log("Display", currentStep)
-
         if (currentStep.step > numSteps) {
             // currentStep.step = 1;
         }
@@ -70,7 +68,7 @@ export default function Signup() {
                         <div class="stepper-horizontal" id="stepper1">
                             <div class="step edting">
                                 <div class="step-circle"><span>1</span></div>
-                                <div class="step-title">Basic Info</div>
+                                <div class="step-title">Create an account !</div>
                                 <div class="step-bar-left"></div>
                                 <div class="step-bar-right"></div>
                             </div>
@@ -83,17 +81,16 @@ export default function Signup() {
                             <div class="step">
                                 <div class="step-circle"><span>3</span></div>
                                 <div class="step-title">Contacts</div>
-                                <div class="step-optional">Optional</div>
                                 <div class="step-bar-left"></div>
                                 <div class="step-bar-right"></div>
                             </div>
-                            <div class="step">
+                            {/* <div class="step">
                                 <div class="step-circle"><span>4</span></div>
                                 <div class="step-title">Reporting Info</div>
                                 <div class="step-optional">Optional</div>
                                 <div class="step-bar-left"></div>
                                 <div class="step-bar-right"></div>
-                            </div>
+                            </div> */}
                         </div>
                         {/* <button className="btn border-primary" onClick={() => setCurrentStep({ payload: 'increase' })}>update</button> */}
                     </div >
