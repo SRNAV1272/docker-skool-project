@@ -12,9 +12,9 @@ const port = process.env.PORT || 5000
 app.listen(port, async () => {
     console.log(`Server is listening at port ${port}`)
 
-    // const createUser = new UserModel({ email: 'sairajesh@gmail.com', password: 'password123' })
-    // const userCreated = await createUser.save()
-    // console.log(userCreated)
+    const createUser = new UserModel({ email: 'sairajesh@gmail.com', password: 'password123' })
+    const userCreated = await createUser.save() 
+    console.log(userCreated)
     // UserModel.find({}).then(res => {
     //     console.log(res)
     // }).catch(err => {

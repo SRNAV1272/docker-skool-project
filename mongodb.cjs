@@ -24,9 +24,7 @@ const userSchema = new mongoose.Schema({
 })
 
 
-// const MonModel = connectdb.model("mon", monmodel)
 const UserModel = connectdb.model('employees', userSchema)
 
 module.exports.UserModel = UserModel
-// module.exports.MonModel = MonModel
 module.exports.connectdb = connectdb

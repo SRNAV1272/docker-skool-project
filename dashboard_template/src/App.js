@@ -18,8 +18,13 @@ import Signup from './Components/Student/Signup/SignUp';
 import './App.scss'
 import BasicInfo from './Components/Student/Signup/BasicInfo';
 import UpdateState, { SetContext, initialState } from './Components/Student/Signup/Reducer';
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import Address from './Components/Student/Signup/Address';
+import Home from './Public/Home';
+import Portfolio from './Public/Portfolio';
+import About from './Public/About';
+import Contact from './Public/Contact';
+import Navbar from './Public/Navbar';
 
 
 
@@ -29,11 +34,36 @@ function App() {
 
   const WebRoutes = [
     {
-      path: '/',
+      path: '',
+      element:
+      <div
+        style={{
+          backgroundColor: "#EDF1F4",
+          height:`${window.innerHeight-4}px`
+        }}
+      >
+        <Navbar />
+      </div>,
       children: [
+        {
+          path:'',
+          element:<Home />
+        },
         {
           path: 'login',
           element: <Login />
+        },
+        {
+          path:'portfolio',
+          element:<Portfolio />
+        },
+        {
+          path:'about',
+          element:<About />
+        },
+        {
+          path:'contact',
+          element:<Contact />
         }
       ]
     },
@@ -157,9 +187,49 @@ function App() {
       element: <Navigate to='/login' />
     }
   ]
+
+  useEffect(() => {
+    // const clearCacheData = () => {
+      // console.log("Display",caches.keys().then)
+      caches.keys().then((names) => {
+        console.log("Display", names)
+          names.forEach((name) => {
+            console.log("Display", name)
+              caches.delete(name);
+          });
+      });
+      // alert('Complete Cache Cleared')
+  // };
+  })
   
   const routes = useRoutes(WebRoutes)
   return routes
 }
 
 export default App;
+
+
+
+// Filename: App.js
+// import * as React from 'react';
+ 
+// export default function App() {
+ 
+//     // Function to clear complete cache data
+//     const clearCacheData = () => {
+//         caches.keys().then((names) => {
+//             names.forEach((name) => {
+//                 caches.delete(name);
+//             });
+//         });
+//         alert('Complete Cache Cleared')
+//     };
+ 
+//     return (
+//         <div style={{ height: 500, width: '80%' }}>
+//             <h4>How to clear complete cache data in ReactJS?</h4>
+//             <button onClick={() => clearCacheData()} >
+//                 Clear Cache Data</button>
+//         </div>
+//     );
+// }
