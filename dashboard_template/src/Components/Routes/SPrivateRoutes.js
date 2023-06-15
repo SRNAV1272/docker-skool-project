@@ -5,6 +5,8 @@ export default function SPrivateRoutes() {
 
     const auth = { token: jsCookie.get('login'), student: jsCookie.get('student') }
 
+    console.log("auth", auth)
+
     return (
         <>
             {

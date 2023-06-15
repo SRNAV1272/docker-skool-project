@@ -44,11 +44,6 @@ export default function SDashboard() {
     const navigate = useNavigate()
     const [Class, setClass] = useState('')
 
-    useEffect(() => {
-        console.log("Display student dashboard")
-        navigate('/student/dashboard')
-    }, [])
-
     const [rotate, setRotate] = useState({
         menu: 0,
         pro: 0

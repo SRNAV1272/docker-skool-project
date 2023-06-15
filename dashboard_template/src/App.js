@@ -23,8 +23,10 @@ import Address from './Components/Student/Signup/Address';
 import Home from './Public/Home';
 import Portfolio from './Public/Portfolio';
 import About from './Public/About';
-import Contact from './Public/Contact';
 import Navbar from './Public/Navbar';
+import Education from './Public/About/Education';
+import Skills from './Public/About/Skills';
+import Experience from './Public/About/Experience';
 
 
 
@@ -39,7 +41,8 @@ function App() {
       <div
         style={{
           backgroundColor: "#EDF1F4",
-          height:`${window.innerHeight-4}px`
+          height:`${window.innerHeight-4}px`,
+          overflow:'auto'
         }}
       >
         <Navbar />
@@ -59,11 +62,21 @@ function App() {
         },
         {
           path:'about',
-          element:<About />
-        },
-        {
-          path:'contact',
-          element:<Contact />
+          element:<About />,
+          children: [
+            {
+              path:'',
+              element: <Education />
+            },
+            {
+              path:'skills',
+              element: <Skills />
+            },
+            {
+              path:'experience',
+              element: <Experience />
+            }
+          ]
         }
       ]
     },
@@ -76,7 +89,7 @@ function App() {
       ,
       children: [
         {
-          path: 'basic_info',
+          path: '',
           element:
             <BasicInfo />
         },
@@ -104,7 +117,7 @@ function App() {
             </>,
           children: [
             {
-              path: 'dashboard',
+              path: '',
               element:
                 <>
                   <Breadcrumb />
