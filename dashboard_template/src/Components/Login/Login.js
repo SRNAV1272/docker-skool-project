@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { useState } from "react"
 import jsCookie from 'js-cookie'
+import { login } from "../../routeURLs"
 
 export default function Login() {
 
@@ -11,13 +12,12 @@ export default function Login() {
         password: ''
     })
 
-    console.log('jscookie', jsCookie.get("login"), jsCookie.get('student'), jsCookie.get('teacher'))
-
+    // console.log('jscookie', jsCookie.get("login"), jsCookie.get('student'), jsCookie.get('teacher'))
     function Submit(e) {
         e.preventDefault()
         try {
 
-            axios.post('http://localhost:5000/login', state)
+            axios.post(login, state)
                 .then(res => {
                     console.log(res.data)
                     if (res.data.login) {

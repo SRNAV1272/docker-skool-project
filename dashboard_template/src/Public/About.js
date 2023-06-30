@@ -1,14 +1,20 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 export default function About() {
 
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        navigate('/about/education')
+    }, [])
 
     return (
         <>
             <div className="col-12 px-5 py-2">
                 <div className="bg-white shadow-lg d-flex flex-column rounded flex-md-row justify-content-md-between align-items-lg-center px-5 py-3">
                     <NavLink
-                        to='/about'
+                        to='/about/education'
                         className={({ isActive }) => {
                             if (isActive)
                                 return window.innerWidth < 768 ? 'text-primary fs-3 text-decoration-underline'

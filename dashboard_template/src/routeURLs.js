@@ -1,0 +1,1 @@
+export const login = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/login' : '/login'

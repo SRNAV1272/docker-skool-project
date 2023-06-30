@@ -1,7 +1,7 @@
 import './Home.scss'
-// import image from '../image.jpg'
 
 export default function Home() {
+
 
     return (
         <>
@@ -70,3 +70,64 @@ export default function Home() {
         </>
     )
 }
+
+
+    // const [Input, setInput] = useState({
+    //     input: '',
+    //     err: ''
+    // })
+
+    // const string = 'rtsp://admin:Admin123$@192.168.1.249/cam/realmonitor?channel=1&subtype=00&authbasic=YWRtaW46QWRtaW4xMjMh'
+
+    // const rtspVerification = /^rtsp:\/\/[-a-zA-Z0-9@:%._\\+~#?&//=]{2,256}:[-a-zA-Z0-9@:%._\\+~#?&//=]{2,256}/
+
+    // const octet = '(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]?|0)';
+    // const ipVerification = new RegExp(`@${octet}\\.${octet}\\.${octet}\\.${octet}`);
+
+    // const channelVerification = /\?channel=[-a-zA-Z0-9%._\\+~#?&//=]{2,256}/
+    // const subtypeVerification = /\&subtype=[-a-zA-Z0-9@:%._\\+~#?&//=]{2,256}/
+    // const authVerification = /\&authbasic=[-a-zA-Z0-9@:%._\\+~#?&//=]{2,256}$/
+
+    // console.log("REGEX", rtspVerification.test(string), ipVerification.test(string), channelVerification.test(string), subtypeVerification.test(string), authVerification.test(string))
+
+    // useEffect(() => {
+    //     console.log("REGEX", Input)
+    //     if (Input.input.length !== 0) {
+    //         if (!rtspVerification.test(Input.input)) setInput(prev => {
+    //             return {
+    //                 ...prev,
+    //                 err: `rtspVerification Failed`
+    //             }
+    //         })
+    //         else if (!ipVerification.test(Input.input)) setInput(prev => {
+    //             return {
+    //                 ...prev,
+    //                 err: `IP Verification Failed`
+    //             }
+    //         })
+    //         else if (!channelVerification.test(Input.input)) setInput(prev => {
+    //             return {
+    //                 ...prev,
+    //                 err: `Channel Verification Failed`
+    //             }
+    //         })
+    //         else if (!subtypeVerification.test(Input.input)) setInput(prev => {
+    //             return {
+    //                 ...prev,
+    //                 err: `Subtype Verification Failed`
+    //             }
+    //         })
+    //         else if (!authVerification.test(Input.input)) setInput(prev => {
+    //             return {
+    //                 ...prev,
+    //                 err: `Auth Basic Verification Failed`
+    //             }
+    //         })
+    //         else setInput(prev => {
+    //             return {
+    //                 ...prev,
+    //                 err: ''
+    //             }
+    //         })
+    //     }
+    // }, [Input.input])
