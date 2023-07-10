@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cors())
 app.use(express.static(path.join(`${process.cwd()}`, "build")))
 
-const port = process.env.PORT || 5000
+const port = 5000
 let routes = [
     '/',
     '/portfolio',
@@ -30,16 +30,6 @@ let routes = [
 
 app.listen(port, async () => {
     console.log(`Server is listening at port ${port}`)
-
-    // const createUser = new UserModel({ email: 'sairajesh@gmail.com', password: 'password123' })
-    // const userCreated = await createUser.save() 
-    // console.log(userCreated)
-    // UserModel.find({}).then(res => {
-    //     console.log(res)
-    // }).catch(err => {
-    //     console.log(err)
-    // })
-
 })
 
 app.get(routes, (req, res) => {
@@ -48,7 +38,7 @@ app.get(routes, (req, res) => {
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body
-    if (username === "sairajesh@gmail.com" && password === 'password123') {
+    if (username === "student@student.com" && password === 'password123') {
         res.send({ login: true, student: true })
     } else if (username === 'teacher@gmail.com' && password === 'password123') {
         res.redirect('/teacher/profile')
@@ -58,4 +48,9 @@ app.post('/login', (req, res) => {
         res.status(400)
         res.send({ login: false })
     }
+})
+
+app.get('/Data', (req, res) => {
+    console.log("")
+    res.send('Entire')
 })

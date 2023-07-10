@@ -12,7 +12,6 @@ export default function Login() {
         password: ''
     })
 
-    // console.log('jscookie', jsCookie.get("login"), jsCookie.get('student'), jsCookie.get('teacher'))
     function Submit(e) {
         e.preventDefault()
         try {
@@ -67,6 +66,10 @@ export default function Login() {
                             </div>
                             <div className={`h-100 ${window.innerWidth < 1024 ? 'w-100' : 'w-50'}`}>
                                 <h1>Login</h1>
+                                <div className="px-4 py-2">
+                                    <span className="fw-bold text-primary" style={{ fontSize: '10px' }}><span className="text-danger">username:</span> student@student.com</span>&emsp;|&emsp;
+                                    <span className="fw-bold text-primary" style={{ fontSize: '10px' }}><span className="text-danger">password:</span> password123</span>
+                                </div>
                                 <div>
                                     <form className="row g-3 needs-validation px-4 py-2" onSubmit={Submit} novalidate>
                                         <div className="col-12">
@@ -104,7 +107,10 @@ export default function Login() {
                                             </div>
                                         </div>
                                         <div className="col-12">
-                                            <button className="btn btn-primary" type="submit">Login</button>
+                                            <button className="btn btn-primary" type="submit">Login</button>&emsp;
+                                            <button className="btn fw-bold" type="submit">
+                                                <span className="text-decoration-underline" onClick={() => navigate('/signup')}>Sign Up</span>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

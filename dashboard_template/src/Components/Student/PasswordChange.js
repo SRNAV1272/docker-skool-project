@@ -31,8 +31,8 @@ export default function PasswordChange() {
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" />
                         </div>
-                        <button type="submit" class="btn border-primary border-2">Submit</button>&emsp;
-                        <button class="btn border-secondary border-2" onClick={() => navigate(-1)}>Back</button>&emsp;
+                        <button type="submit" class="btn border-primary border-2 fw-bold" disabled>Submit</button>&emsp;
+                        <button class="btn border-secondary border-2 fw-bold" onClick={() => navigate(-1)}>Back</button>&emsp;
                     </form>
                 </div>
             </div>

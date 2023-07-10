@@ -48,6 +48,20 @@ export default function Skills() {
                                 </div>
                             </div>
                         </div>
+                        <div className="card-body">
+                            <h6 className="fw-bold text-end">Kubernetes</h6>
+                            <div className="d-flex justify-content-between align-items-center">
+                                <img
+                                    src="https://e1.pxfuel.com/desktop-wallpaper/836/321/desktop-wallpaper-kubernetes.jpg"
+                                    style={{ width: '150px', height: '100px' }}
+                                    className="rounded"
+                                    alt="image3"
+                                />&emsp;
+                                <div class="progress w-75">
+                                    <div class="progress-bar" role="progressbar" style={{ width: '25%' }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Beginners</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

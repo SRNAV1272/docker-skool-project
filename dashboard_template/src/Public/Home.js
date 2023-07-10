@@ -2,7 +2,6 @@ import './Home.scss'
 
 export default function Home() {
 
-
     return (
         <>
             <div className="col-12">
@@ -51,14 +50,16 @@ export default function Home() {
                                 <h3 className="textshadow text-secondary">Hyderabad</h3>
                                 <div className="align-center">
                                     <div>
-                                        <a href='https://www.instagram.com/srdoomsd/?igshid=MzNlNGNkZWQ4Mg%3D%3D' rel="noreferrer" target='_blank'>
+                                        <a href='https://www.linkedin.com/in/sai-rajesh-k-539424255' rel="noreferrer" target='_blank'>
                                             <i class="fa-brands fa-linkedin-in fs-3"></i>
                                         </a>&emsp;
 
-                                        <a href='https://www.instagram.com/srdoomsd`' target='_blank' rel="noreferrer" >
+                                        <a href='https://www.instagram.com/srdoomsd' target='_blank' rel="noreferrer" >
                                             <i class="fa-brands fa-instagram fs-3"></i>
                                         </a>&emsp;
-                                        <i class="fa-brands fa-google fs-3"></i>
+                                    </div>
+                                    <div>
+
                                     </div>
                                 </div>
                             </div>

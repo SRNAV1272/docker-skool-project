@@ -57,9 +57,6 @@ export default function StudentProfile() {
                 <div className="col-12 col-lg-4 d-flex flex-column justify-content-center">
                     <h4 className="fw-bold text-secondary">K Sai Rajesh</h4>
                     <h6 className="fw-bold text-primary">Student</h6>
-                    <h6 className="fw-bold text-danger shadow-lg overflow-auto" style={{ fontSize: '10px', width: '400px' }}>
-                        {address.substring(0, 150)}
-                    </h6>
                 </div>
                 <div className="col-12 col-lg-4 d-flex flex-column justify-content-center">
                     <h4 className="fw-bold text-secondary">1272</h4>

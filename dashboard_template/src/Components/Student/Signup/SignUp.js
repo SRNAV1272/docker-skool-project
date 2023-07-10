@@ -1,5 +1,5 @@
-import { useContext, useEffect, useReducer, useState } from "react";
-import UpdateState, { SetContext, initialState } from "./Reducer";
+import { useContext, useEffect } from "react";
+import { SetContext } from "./Reducer";
 import { Outlet, useNavigate } from "react-router-dom";
 
 export default function Signup() {
@@ -9,13 +9,13 @@ export default function Signup() {
     var numSteps = 3;
     const navigate = useNavigate()
 
-    useEffect(() => {
-        navigate('/signup/basic_info')
-    }, [])
+    useEffect(() => {                       // eslint-disable-next-line
+        navigate('/signup/basic_info')      // eslint-disable-next-line
+    }, [])                                  // eslint-disable-next-line
 
-    useEffect(() => {
-        nextStep()
-    }, [currentStep])
+    useEffect(() => {               // eslint-disable-next-line
+        nextStep()                  // eslint-disable-next-line
+    }, [currentStep])               // eslint-disable-next-line
 
     function nextStep() {
         if (currentStep.step > numSteps) {
@@ -78,21 +78,7 @@ export default function Signup() {
                                 <div class="step-bar-left"></div>
                                 <div class="step-bar-right"></div>
                             </div>
-                            <div class="step">
-                                <div class="step-circle"><span>3</span></div>
-                                <div class="step-title">Contacts</div>
-                                <div class="step-bar-left"></div>
-                                <div class="step-bar-right"></div>
-                            </div>
-                            {/* <div class="step">
-                                <div class="step-circle"><span>4</span></div>
-                                <div class="step-title">Reporting Info</div>
-                                <div class="step-optional">Optional</div>
-                                <div class="step-bar-left"></div>
-                                <div class="step-bar-right"></div>
-                            </div> */}
                         </div>
-                        {/* <button className="btn border-primary" onClick={() => setCurrentStep({ payload: 'increase' })}>update</button> */}
                     </div >
                 </div >
                 <div className="row">

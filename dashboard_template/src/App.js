@@ -18,7 +18,7 @@ import Signup from './Components/Student/Signup/SignUp';
 import './App.scss'
 import BasicInfo from './Components/Student/Signup/BasicInfo';
 import UpdateState, { SetContext, initialState } from './Components/Student/Signup/Reducer';
-import { useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 import Address from './Components/Student/Signup/Address';
 import Home from './Public/Home';
 import Portfolio from './Public/Portfolio';
@@ -27,8 +27,6 @@ import Navbar from './Public/Navbar';
 import Education from './Public/About/Education';
 import Skills from './Public/About/Skills';
 import Experience from './Public/About/Experience';
-
-
 
 function App() {
 
@@ -200,20 +198,6 @@ function App() {
       element: <Navigate to='/login' />
     }
   ]
-
-  useEffect(() => {
-    // const clearCacheData = () => {
-      // console.log("Display",caches.keys().then)
-      caches.keys().then((names) => {
-        console.log("Display", names)
-          names.forEach((name) => {
-            console.log("Display", name)
-              caches.delete(name);
-          });
-      });
-      // alert('Complete Cache Cleared')
-  // };
-  })
   
   const routes = useRoutes(WebRoutes)
   return routes

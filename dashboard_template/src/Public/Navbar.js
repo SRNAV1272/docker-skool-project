@@ -114,17 +114,6 @@ export default function Navbar() {
                                 >
                                     ABOUT
                                 </NavLink>
-                                <NavLink
-                                    to='/contact'
-                                    className={({ isActive }) => {
-                                        if (isActive)
-                                            return 'text-primary'
-                                        else
-                                            return 'text-secondary'
-                                    }}
-                                >
-                                    CONTACT
-                                </NavLink>
                             </div>
                         </div>
                     </div>

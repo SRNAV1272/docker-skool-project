@@ -1,2 +1,6 @@
 ./dashboard_template
-.dockerignore
+./node_modules
+./.dockerignore
+./docker-mongo-compose.yamls
+./Dockerfile
+./package-lock.json
